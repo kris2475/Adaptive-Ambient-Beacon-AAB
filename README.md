@@ -1,53 +1,105 @@
 # The Adaptive Contextual Biometric Beacon (ACBB)
 
 ## 📖 Overview
-The **Adaptive Contextual Biometric Beacon (ACBB)** is an **ambient intelligence system** designed to enhance safety and quality of life for **ageing populations** and individuals with **cognitive or sensory decline**. At its core, the ACBB builds on something familiar to many elderly users: their **analogue FM radio**.  
+The **Adaptive Contextual Biometric Beacon (ACBB)** is an **ambient intelligence system** designed to enhance safety and quality of life for **ageing populations** and individuals with **cognitive or sensory decline**. Unlike traditional smart home technologies (which often rely on screens, complex menus, or smartphones), the ACBB **repurposes the analogue FM radio** into an unobtrusive, tangible environmental monitor.  
 
 Imagine Mrs Jones, who enjoys listening to her favourite FM station. She uses a simple, traditional radio and is accustomed to tuning the dial. The ACBB introduces subtle, intuitive feedback into this familiar environment. When something in her immediate environment changes—such as an increase in indoor pollutants, VOCs, or other hazards—these events are detected by the ACBB’s **sensor suite** (e.g., BME680 or equivalent gas sensors). The system continuously monitors the environment and calculates the severity of deviations relative to an **adaptive baseline**.
 
 Once a deviation is detected, the ACBB responds by transmitting a **low-power FM signal**. This signal interacts with the analogue radio: it creates **audible static or subtle interference**, overlaying the station Mrs Jones is listening to. The interference is intentionally **perceptible but non-startling**, designed to alert her without causing distress. The radio station itself continues to broadcast normally, but the **local ACBB transmission introduces a perceptible cue**.
 
-The **crucial interaction** comes from the user: Mrs Jones responds to the interference by **turning the radio’s tuning dial**. Because analogue radios have finite frequency selectivity, small adjustments move the receiver away from the strongest local interference, **partially or fully restoring clarity** of the station. This physical interaction serves as a **low-cognitive-load, procedural confirmation** that she has noticed the environmental event. By leveraging **procedural memory and familiar physical interaction**, the ACBB provides an intuitive, non-digital alert mechanism suitable for users with cognitive or sensory decline.
+The **crucial interaction** comes from the user: Mrs Jones responds to the interference by **turning the radio’s tuning dial**. Because analogue radios have finite frequency selectivity, small adjustments move the receiver out of the strongest local interference, **partially or fully restoring clarity** of the station. This physical interaction serves as a **low-cognitive-load, procedural confirmation** that she has noticed the environmental event. By leveraging **procedural memory and familiar physical interaction**, the ACBB provides an intuitive, non-digital alert mechanism suitable for users with cognitive or sensory decline.
 
-From this foundation, the rest of the system operates as described: chronic environmental deviations are signaled via **slow frequency drift**, acute events via **erratic tone modulation**, and all actions are logged by the microcontroller (ESP32) to refine future alerts. The design ensures the ACBB is **tangible, non-visual, low-cognitive-load, and integrates seamlessly into a familiar daily activity**: listening to the radio.
+### FM Frequency Resolution and Procedural Cue Control
+The ACBB relies on a **low-power FM transmitter** to create perceptible interference on a nearby analogue radio, guiding the user to interact with the tuning dial. The **frequency step resolution** of the transmitter determines how gradually this interference can be introduced.
 
----
+In initial tests using the **Walfront DSP & PLL Digital Wireless Microphone Stereo FM Transmitter Module (87–108 MHz)**, the minimum frequency step is **0.1 MHz**. This means if Mrs Jones is listening to 97.1 MHz, the transmitter can jump to 97.2 MHz, 97.3 MHz, etc. While effective, these relatively large jumps can **immediately swamp the station**, producing abrupt static that might startle the listener.
 
-## ⚡ Executive Summary
-The ACBB bridges the digital divide for elderly and cognitively impaired users by providing environmental feedback through **physical and auditory channels** rather than screens or apps. It leverages **muscle memory and procedural cognition**, making alerts intuitive and easy to respond to.
-
-| Layer | Type | Mechanism & User Action | Benefit |
-|-------|------|------------------------|---------|
-| 1: Frequency Drift | Chronic IAQ | Slow drift toward radio frequency → static noise; user tunes dial slightly | Tangible awareness of poor air quality |
-| 2: Tone Modulation | Acute Fumes | Erratic tone overlays station → noticeable interference | Immediate alert for sudden hazards |
-| 3: Adaptive Baseline | Contextual Prediction | Personalized IAQ baseline; signals only when deviations occur | Reduces alert fatigue |
-| 4: User Agency | Comfort Calibration | User may press a button to reset baseline | Preserves autonomy |
-
-### Benefits for Dementia Care
-- **Procedural Memory Activation:** Uses familiar dial-turning instead of cognitive reasoning.  
-- **Mitigates Executive Dysfunction:** Simple physical action replaces complex decision-making.  
-- **Reduces Anxiety:** Subtle static is less startling than loud alarms.  
-- **Simplifies Crisis Response:** Hazard translated into *“Sound is unpleasant → I must adjust dial.”*
+By contrast, using a **PLL-based transmitter like the SI4713**, the minimum step is **0.01 MHz (10 kHz)**. This finer resolution allows the ACBB to **approach Mrs Jones’ station very slowly**, e.g., 97.100 → 97.110 → 97.120 MHz. Gradual frequency drift produces **subtle, perceivable static**, giving a **gentle procedural cue** rather than an abrupt disruption. Mrs Jones can then **turn the dial slightly to reduce noise**, confirming her awareness of the environmental event without frustration or alarm. This capability is critical for the ACBB concept: **small, controlled frequency adjustments create a tangible, low-cognitive-load interaction**, leveraging the user’s procedural memory and familiar radio behaviour.
 
 ---
 
-## 🎓 Academic Context
-The ACBB aligns with **HCI and Ambient Assisted Living** principles:
-- **Tangible User Interfaces (TUI):** Converts invisible environmental data into a **physical artefact** (radio + dial).  
-- **Ambient Displays:** Presents predictive environmental data unobtrusively.  
-- **Novelty:** Subverts FM technology; carrier drift becomes an intuitive environmental index, and **physical interaction ensures feedback is memorable**.
+## ⚡ Executive Summary: Bridging the Digital Divide in Elder Care
+The ACBB utilises an advanced **predictive model (Layer 3)** to monitor:
+
+- Indoor Air Quality (**IAQ**)  
+- Volatile Organic Compounds (**VOCs**)  
+- Micro-climate shifts  
+
+It communicates personalised environmental data via two subtle, physical feedback channels:  
+
+- **Frequency drift** → static noise indicates degraded IAQ  
+- **Tone texture modulation** → erratic sound warns of fume spikes  
+
+The **Tangible User Interface (TUI)** requires users to **interact with the tuning dial** to resolve static, providing:  
+
+- A **low-cognitive-load** check on environmental health  
+- **Non-visual feedback** for inclusivity  
+- **Safer ageing in place** with reduced digital fatigue  
 
 ---
 
-## ⚙️ Technical System
-| Component | Role | Mechanism |
-|-----------|------|-----------|
-| Sensor Suite | Data acquisition & prediction | Multi-gas sensor (e.g., BME680) monitors IAQ, VOCs, temperature, humidity, and feeds adaptive baseline algorithm. |
-| Microcontroller (ESP32) | Logic & signal generation | Processes sensor data, calculates deviations, runs predictive baseline algorithm, generates frequency/tone commands. |
-| FM Transmitter (SI4713) | Output actuator | Low-power transmission of frequency drift or tone modulation to nearby radios. |
-| Analogue FM Radio | Tangible User Interface | Receives broadcast; static/interference prompts dial-turning. Turning the dial slightly moves the receiver out of the interference zone, restoring partial or full clarity and confirming user attention. |
+## 🧓 Application for Ageing Populations and Cognitive Accessibility
 
-> **Important:** Turning the dial does **not override the broadcast**; it moves the receiver out of the strongest local interference, restoring clarity and creating a **procedural cue**.
+### 2.1 Addressing Sensory and Cognitive Decline
+The ACBB is **non-visual** and leverages **familiar interactions**, making it suitable for users with impairments:
+
+- **Non-Visual Cue:** Alerts are auditory (static increase).  
+- **Familiarity:** Interaction uses FM radio/tuning dial, familiar to older generations.  
+- **Low Cognitive Load:** Requires a single action—turning the dial.  
+
+---
+
+### 2.2 Multi-Layered Feedback for Intuitive Safety
+The ACBB employs layered communication to convey both **chronic and acute risks**:
+
+| Layer | Information Type        | Physical Mechanism & User Action                                                                 | Benefit for Seniors |
+|-------|-------------------------|--------------------------------------------------------------------------------------------------|---------------------|
+| **Layer 1: Frequency Drift** | Macro-State IAQ (Chronic) | Slow drift of carrier frequency → static noise. User restores clarity by tuning. | Tangible reinforcement of IAQ decline. |
+| **Layer 2: Tone Modulation** | Micro-State Fumes (Acute) | Erratic tone rhythm/texture signals sudden fume spikes. | Subtle but urgent safety warning. |
+| **Layer 3: Adaptive Baseline** | Predictive Context | System learns personalised IAQ baseline and signals only when conditions deviate. | Reduces alert fatigue; ensures trusted alerts. |
+| **Layer 4: User Agency** | Comfort Calibration | User presses a button to reset baseline comfort state. | Preserves autonomy and independence. |
+
+---
+
+### 2.3 Specific Benefits for Dementia Care
+The ACBB design directly supports individuals living with **dementia**:  
+
+- **Harnessing Procedural Memory:** Leverages muscle memory (turning dial), bypassing impaired declarative memory.  
+- **Mitigating Executive Dysfunction:** Provides visceral non-verbal prompts instead of requiring decision-making.  
+- **Reducing Anxiety and Agitation:** Subtle static buildup is less frightening than loud alarms.  
+- **Simplifying Crisis Response:** Translates hazards into a binary state: *“Sound is unpleasant → I must correct it.”*  
+
+---
+
+## 🎓 Academic Context and Technical Alignment
+
+### 3.1 Alignment with HCI Foundations
+- **Tangible User Interfaces (TUI):** Converts invisible environmental data (IAQ, VOCs) into a **physical artefact** (radio/dial).  
+- **Ambient Displays & Assisted Living (AAL):** Functions as an **ambient display**, presenting predictive data unobtrusively in the user’s environment.  
+
+### 3.2 Novelty in the Feedback Mechanism
+- **Subversion of FM Technology:** Instead of high-fidelity transmission, FM carrier drift is repurposed as an **intuitive environmental index**.  
+- **Actionable Kinesthetic Feedback:** Requires **physical interaction** (tuning dial), making feedback **memorable** and actionable for users with memory challenges.  
+
+---
+
+## ⚙️ Technical System Outline
+The ACBB integrates **four technical components** into a context-aware loop:
+
+| Component | Role in the System | Mechanism and Rationale |
+|-----------|--------------------|--------------------------|
+| **Sensor Suite** | Data Acquisition & Prediction | Multi-gas sensor (e.g., **BME680**) measures IAQ, VOCs, temperature, humidity. Feeds a predictive baseline algorithm. |
+| **Microcontroller Unit (MCU)** | Logic & Signal Generation | MCU (e.g., **ESP32**) processes data, runs adaptive baseline algorithm, and generates DAC-driven beacon tones. |
+| **FM Transmitter Module** | Output Actuator | FM transmitter (e.g., **SI4713**) adjusts carrier frequency relative to IAQ deviation. |
+| **Analogue FM Radio** | User Interface (TUI) | User’s own FM radio receives broadcast. Drift produces static → prompts physical tuning action. |
+
+The design prioritises:  
+
+- **Simplicity**  
+- **Robustness**  
+- **Low-power operation**  
+
+This ensures the ACBB functions reliably in **non-technical environments** over extended periods.  
 
 ---
 
