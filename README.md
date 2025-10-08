@@ -1,11 +1,20 @@
 # The Adaptive Contextual Biometric Beacon (ACBB)
-## 📖 Overview
-The **Adaptive Contextual Biometric Beacon (ACBB)** is an **ambient intelligence system** designed to enhance safety and quality of life for **ageing populations** and individuals with **cognitive or sensory decline**. Unlike traditional smart home technologies, the ACBB **repurposes the analogue FM radio** into an unobtrusive, tangible environmental monitor, providing **auditory and kinesthetic cues** without digital complexity. Recent real-world testing demonstrated that a **local FM transmitter can override a nearby radio reception**: tuning a software-defined radio (SDR) to 97.1 MHz and switching a transmitter from 97.2 MHz to 97.1 MHz immediately blocked the station, creating static—confirming the ACBB principle works in practice (see SDR.png).
 
-The ACBB monitors environmental conditions using a **predictive algorithm** tracking Indoor Air Quality (**IAQ**), Volatile Organic Compounds (**VOCs**), and micro-climate variations. It communicates via subtle, physical feedback channels: **frequency drift** (slow static for chronic IAQ degradation) and **tone modulation** (erratic sound for acute fume spikes). The **Tangible User Interface (TUI)** requires interacting with the radio tuning dial, providing a **low-cognitive-load procedural cue**, **non-visual feedback**, and **safer ageing in place**.
+## 📖 Overview
+The **Adaptive Contextual Biometric Beacon (ACBB)** is an **ambient intelligence system** designed to enhance safety and quality of life for **ageing populations** and individuals with **cognitive or sensory decline**. At its core, the ACBB builds on something familiar to many elderly users: their **analogue FM radio**.  
+
+Imagine Mrs Jones, who enjoys listening to her favourite FM station. She uses a simple, traditional radio and is accustomed to tuning the dial. The ACBB introduces subtle, intuitive feedback into this familiar environment. When something in her immediate environment changes—such as an increase in indoor pollutants, VOCs, or other hazards—these events are detected by the ACBB’s **sensor suite** (e.g., BME680 or equivalent gas sensors). The system continuously monitors the environment and calculates the severity of deviations relative to an **adaptive baseline**.
+
+Once a deviation is detected, the ACBB responds by transmitting a **low-power FM signal**. This signal interacts with the analogue radio: it creates **audible static or subtle interference**, overlaying the station Mrs Jones is listening to. The interference is intentionally **perceptible but non-startling**, designed to alert her without causing distress. The radio station itself continues to broadcast normally, but the **local ACBB transmission introduces a perceptible cue**.
+
+The **crucial interaction** comes from the user: Mrs Jones responds to the interference by **turning the radio’s tuning dial**. Because analogue radios have finite frequency selectivity, small adjustments move the receiver away from the strongest local interference, **partially or fully restoring clarity** of the station. This physical interaction serves as a **low-cognitive-load, procedural confirmation** that she has noticed the environmental event. By leveraging **procedural memory and familiar physical interaction**, the ACBB provides an intuitive, non-digital alert mechanism suitable for users with cognitive or sensory decline.
+
+From this foundation, the rest of the system operates as described: chronic environmental deviations are signaled via **slow frequency drift**, acute events via **erratic tone modulation**, and all actions are logged by the microcontroller (ESP32) to refine future alerts. The design ensures the ACBB is **tangible, non-visual, low-cognitive-load, and integrates seamlessly into a familiar daily activity**: listening to the radio.
+
+---
 
 ## ⚡ Executive Summary
-The ACBB is designed to bridge the digital divide for elderly and cognitively impaired users by providing environmental feedback through **physical and auditory channels** rather than screens or apps. It leverages **muscle memory and procedural cognition**, making it intuitive even for those with memory impairment. Layered feedback is structured as follows:
+The ACBB bridges the digital divide for elderly and cognitively impaired users by providing environmental feedback through **physical and auditory channels** rather than screens or apps. It leverages **muscle memory and procedural cognition**, making alerts intuitive and easy to respond to.
 
 | Layer | Type | Mechanism & User Action | Benefit |
 |-------|------|------------------------|---------|
@@ -20,11 +29,15 @@ The ACBB is designed to bridge the digital divide for elderly and cognitively im
 - **Reduces Anxiety:** Subtle static is less startling than loud alarms.  
 - **Simplifies Crisis Response:** Hazard translated into *“Sound is unpleasant → I must adjust dial.”*
 
+---
+
 ## 🎓 Academic Context
 The ACBB aligns with **HCI and Ambient Assisted Living** principles:
 - **Tangible User Interfaces (TUI):** Converts invisible environmental data into a **physical artefact** (radio + dial).  
-- **Ambient Displays:** Provides predictive environmental data unobtrusively.  
+- **Ambient Displays:** Presents predictive environmental data unobtrusively.  
 - **Novelty:** Subverts FM technology; carrier drift becomes an intuitive environmental index, and **physical interaction ensures feedback is memorable**.
+
+---
 
 ## ⚙️ Technical System
 | Component | Role | Mechanism |
@@ -36,12 +49,15 @@ The ACBB aligns with **HCI and Ambient Assisted Living** principles:
 
 > **Important:** Turning the dial does **not override the broadcast**; it moves the receiver out of the strongest local interference, restoring clarity and creating a **procedural cue**.
 
+---
+
 ## 🏠 Practical Operation Scenario
 1. **Normal Operation:** Radio tuned to 97.1 MHz, ACBB transmitter inactive or slightly off-frequency.  
 2. **Environmental Change:** Sensors detect IAQ deviation; ESP32 calculates severity.  
 3. **Frequency Drift / Interference:** Chronic deviations → slow drift with static; acute deviations → low-power interference or erratic tone.  
 4. **User Response:** Turning the dial moves radio out of interference → clarity partially restored, confirming attention.  
 5. **Feedback Loop:** ACBB logs interaction, adjusts future drift thresholds for optimal sensitivity.
+
 
 **Conceptual Flow Diagram:**
 [IAQ / VOC Sensors]
