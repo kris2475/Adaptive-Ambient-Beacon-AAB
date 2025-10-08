@@ -1,8 +1,5 @@
 # Adaptive Contextual Biometric Beacon (ACBB) – Manual FM TX Prototyping
 
-**Author:** K Seunarine  
-**Date:** 8 October 2025  
-
 ## Phase: Preliminary Manual FM Transmission Testing
 
 This document outlines the **manual, preliminary testing procedure** for the ACBB system using the Walfront DSP & PLL Digital Wireless Microphone Stereo FM Transmitter Module (ASIN: B0762JM715) and the NESDR Smart SDR receiver, prior to integrating the ESP32 and full sensor-driven automation. The goal is to validate the hypothesis that **subtle FM interference can trigger procedural dial-turning interactions** in ageing and dementia-friendly contexts.
