@@ -1,5 +1,8 @@
 # Adaptive Contextual Biometric Beacon (ACBB) – Manual FM TX Prototyping
 
+**Author:** K Seunarine  
+**Date:** 8 October 2025  
+
 ## Phase: Preliminary Manual FM Transmission Testing
 
 This document outlines the **manual, preliminary testing procedure** for the ACBB system using the Walfront DSP & PLL Digital Wireless Microphone Stereo FM Transmitter Module (ASIN: B0762JM715) and the NESDR Smart SDR receiver, prior to integrating the ESP32 and full sensor-driven automation. The goal is to validate the hypothesis that **subtle FM interference can trigger procedural dial-turning interactions** in ageing and dementia-friendly contexts.
@@ -8,9 +11,9 @@ This document outlines the **manual, preliminary testing procedure** for the ACB
 
 ## Objective
 
-- Test whether subtle FM interference can act as a **low-cognitive-load, procedural cue** for a user.
-- Ensure the interaction is **intuitive, perceivable, and non-startling**.
-- Gather insights for subsequent **sensor-driven automation with the ESP32 and Si4713 FM module**.
+- Test whether subtle FM interference can act as a **low-cognitive-load, procedural cue** for a user.  
+- Ensure the interaction is **intuitive, perceivable, and non-startling**.  
+- Gather insights for subsequent **sensor-driven automation with the ESP32 and Si4713 FM module**.  
 - Use SDR tools to **observe, measure, and quantify FM interference effects** for more precise testing.
 
 ---
@@ -18,34 +21,34 @@ This document outlines the **manual, preliminary testing procedure** for the ACB
 ## Equipment Needed
 
 1. **FM Transmitter Module**: Walfront DSP & PLL Digital Wireless Microphone Stereo FM Transmitter Module (ASIN: B0762JM715)  
-   - Frequency Range: 87.0MHz to 108.0MHz  
-   - Power Supply: 3V to 5V DC  
+   - Frequency Range: 87.0 MHz to 108.0 MHz  
+   - Power Supply: 3 V to 5 V DC  
    - Audio Input: LINE/USB (stereo), MIC (single channel)  
-   - Emission Distance: Up to 100 meters (with 75cm antenna on open ground)  
+   - Emission Distance: Up to 100 metres (with 75 cm antenna on open ground)  
    - Modulation Mode: Standard FM  
-   - Frequency Adjustment: 0.1MHz per short press, 1.0MHz per long press  
-   - Equivalent Noise: ≥30dB  
-   - Current Consumption: 35mA  
+   - Frequency Adjustment: 0.1 MHz per short press, 1.0 MHz per long press  
+   - Equivalent Noise: ≥30 dB  
+   - Current Consumption: 35 mA  
 
-2. **Analog FM Radio**: Preferably with a tuning dial for manual frequency adjustment.  
+2. **Analogue FM Radio**: Preferably with a tuning dial for manual frequency adjustment.  
 
 3. **NESDR Smart SDR Receiver**  
    - Connects to PC via USB.  
-   - Allows spectrum visualization and recording of FM signals.  
+   - Allows spectrum visualisation and recording of FM signals.  
    - Supports precise observation of interference and frequency drift.  
 
 4. **Audio Source**  
    - LINE Input: Phone, MP3 player, or computer LINE-out.  
    - USB Input: Connect to computer for audio playback.
 
-5. **Power Supply**: Battery or linear regulated 3–5V DC (avoid switch-mode power supplies to prevent interference).
+5. **Power Supply**: Battery or linear regulated 3–5 V DC (avoid switch-mode power supplies to prevent interference).
 
 ---
 
 ## Setup
 
 1. **Select a Test Frequency**  
-   - Choose an unused FM frequency (e.g., 87.9 MHz).  
+   - Choose an unused FM frequency (e.g., 87.9 MHz).  
    - Ensure the radio can tune to this frequency.
 
 2. **Connect Audio Source to TX Module**  
@@ -109,7 +112,7 @@ This document outlines the **manual, preliminary testing procedure** for the ACB
 
 ## Observations to Record
 
-- Perceptibility of interference on analog radio.  
+- Perceptibility of interference on analogue radio.  
 - Intuitiveness of dial-turning action.  
 - Effectiveness of subtle vs. stronger signals.  
 - Response time and confidence in procedural action.  
