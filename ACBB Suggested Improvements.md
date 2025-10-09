@@ -1,9 +1,7 @@
-# Adaptive Contextual Biometric Beacon (ACBB) – Suggested Improvements
+# Adaptive Ambient Beacon (AAB) – Suggested Improvements
 
-**Author:** K Seunarine  
-**Date:** 8 October 2025  
 
-This document outlines **potential enhancements and future directions** for the ACBB project to make it more impactful, research-driven, and user-centred. These suggestions aim to expand functionality, improve user experience, and provide a pathway towards publishable research and practical deployment.
+This document outlines **potential enhancements and future directions** for the ABB project to make it more impactful, research-driven, and user-centred. These suggestions aim to expand functionality, improve user experience, and provide a pathway towards publishable research and practical deployment.
 
 ---
 
