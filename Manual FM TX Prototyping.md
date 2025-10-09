@@ -1,4 +1,4 @@
-# Adaptive Contextual Biometric Beacon (ACBB) – Manual FM TX Prototyping
+# Adaptive Ambient Beacon (AAB) – Manual FM TX Prototyping
 
 ## Phase: Preliminary Manual FM Transmission Testing
 
