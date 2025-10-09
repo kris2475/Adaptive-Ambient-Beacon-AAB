@@ -16,11 +16,6 @@ authors:
     given-names: "[Krishna]"
     orcid: "https://orcid.org/0000-0001-8647-1345" 
     affiliation: "[none]"
-# Add other authors below if applicable:
-#  - family-names: "[Co-author Last Name]"
-#    given-names: "[Co-author First Name]"
-#    orcid: "https://orcid.org/[Co-author ORCID iD]"
-#    affiliation: "[Co-author Affiliation]"
 version: "1.0.0" # This should match your GitHub release tag
 date-released: "[2025-10-09]" # Use today's date or the date you publish the GitHub release
 license: "Apache-2.0"
