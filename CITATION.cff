@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata from this file."
+type: software
+title: "Adaptive Ambient Beacon (AAB): An FM Radio-Based Ambient Intelligence System for Low-Cognitive-Load Air Quality Alerting"
+abstract: "Source code and documentation for the Adaptive Ambient Beacon (AAB), an ambient intelligence system designed to enhance safety for ageing and cognitively impaired users. The system monitors Indoor Air Quality (IAQ) and Volatile Organic Compounds (VOCs) and provides alerts by generating low-power FM radio interference, requiring the user to perform the low-cognitive-load action of turning the radio's tuning dial to confirm the alert."
+keywords:
+  - Ambient Assisted Living (AAL)
+  - Ambient Intelligence
+  - FM Radio
+  - Air Quality
+  - Cognitive Accessibility
+  - IoT
+  - ESP32
+authors:
+  - family-names: "[Seunarine]"
+    given-names: "[Krishna]"
+    orcid: "https://orcid.org/0000-0001-8647-1345" 
+    affiliation: "[none]"
+# Add other authors below if applicable:
+#  - family-names: "[Co-author Last Name]"
+#    given-names: "[Co-author First Name]"
+#    orcid: "https://orcid.org/[Co-author ORCID iD]"
+#    affiliation: "[Co-author Affiliation]"
+version: "1.0.0" # This should match your GitHub release tag
+date-released: "[2025-10-09]" # Use today's date or the date you publish the GitHub release
+license: "Apache-2.0"
+url: "https://github.com/kris2475/Adaptive-Ambient-Beacon-AAB"
