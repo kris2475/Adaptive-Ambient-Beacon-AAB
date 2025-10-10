@@ -1,141 +1,144 @@
 # Adaptive Ambient Beacon (AAB)
 
 ## 📖 Overview
-The **Adaptive Ambient Beacon (AAB)** is an **ambient intelligence system** designed to enhance safety and quality of life for **ageing populations** and individuals with **cognitive or sensory decline**. Unlike traditional smart home technologies (which often rely on screens, complex menus, or smartphones), the ABB **repurposes the analogue FM radio** into an unobtrusive, tangible environmental monitor.  
+The **Adaptive Ambient Beacon (AAB)** is an **ambient intelligence system** designed to enhance safety and quality of life for **ageing populations** and individuals with **cognitive or sensory decline**. Unlike traditional smart home technologies (which often rely on screens, complex menus, or smartphones), the AAB **repurposes analogue FM radio as a tangible environmental monitor**, providing subtle, intuitive feedback through familiar devices.
 
-Imagine Mrs Jones, who enjoys listening to her favourite FM station. She uses a simple, traditional radio and is accustomed to tuning the dial. The ABB introduces subtle, intuitive feedback into this familiar environment. When something in her immediate environment changes—such as an increase in indoor pollutants, VOCs, or other hazards—these events are detected by the ACBB’s **sensor suite** (e.g., BME680 or equivalent gas sensors). The system continuously monitors the environment and calculates the severity of deviations relative to an **adaptive baseline**.
+Imagine Mrs Jones, who enjoys listening to a **legally licensed FM station**, such as a public “talking book” broadcast. She uses a simple, traditional radio and is accustomed to tuning the dial. The AAB introduces feedback by **slightly modulating a separate, low-power FM signal** on a legal frequency near the station. When environmental changes occur—such as increases in indoor pollutants, VOCs, or other hazards detected by the **sensor suite** (e.g., BME680)—the system calculates deviations relative to an **adaptive baseline**.
 
-Once a deviation is detected, the ABB responds by transmitting a **low-power FM signal**. This signal interacts with the analogue radio: it creates **audible static or subtle interference**, overlaying the station Mrs Jones is listening to. The interference is intentionally **perceptible but non-startling**, designed to alert her without causing distress. The radio station itself continues to broadcast normally, but the **local ABB transmission introduces a perceptible cue**.
+Instead of interfering with the licensed station, the AAB **synchronises subtle audio cues with the broadcast content**, producing a gentle overlay or additional tones that are **perceptible but non-startling**. The radio station continues normally, but the cues provide a tangible signal for the user.
 
-The **crucial interaction** comes from the user: Mrs Jones responds to the interference by **turning the radio’s tuning dial**. Because analogue radios have finite frequency selectivity, small adjustments move the receiver out of the strongest local interference, **partially or fully restoring clarity** of the station. This physical interaction serves as a **low-cognitive-load, procedural confirmation** that she has noticed the environmental event. By leveraging **procedural memory and familiar physical interaction**, the ACBB provides an intuitive, non-digital alert mechanism suitable for users with cognitive or sensory decline.
-
-### FM Frequency Resolution and Procedural Cue Control
-The ABB relies on a **low-power FM transmitter** to create perceptible interference on a nearby analogue radio, guiding the user to interact with the tuning dial. The **frequency step resolution** of the transmitter determines how gradually this interference can be introduced.
-
-In initial tests using the **Walfront DSP & PLL Digital Wireless Microphone Stereo FM Transmitter Module (87–108 MHz)**, the minimum frequency step is **0.1 MHz**. This means if Mrs Jones is listening to 97.1 MHz, the transmitter can only jump from 97.3 MHz, 97.2 MHz, etc to 97.1 MHz. While effective, these large jumps can **immediately swamp the station**, producing abrupt static that might startle the listener.
-
-By contrast, using a **PLL-based transmitter like the SI4713**, the minimum step is **0.01 MHz (10 kHz)**. This finer resolution allows the ACBB to **approach Mrs Jones’ station very slowly**, e.g., 97.200 → 97.190 → 97.180 MHz, etc. Gradual frequency drift produces **subtle, perceivable static**, giving a **gentle procedural cue** rather than an abrupt disruption. Mrs Jones can then **turn the dial slightly to reduce noise**, confirming her awareness of the environmental event without frustration or alarm. This capability is critical for the ABB concept: **small, controlled frequency adjustments create a tangible, low-cognitive-load interaction**, leveraging the user’s procedural memory and familiar radio behaviour.
+The **crucial interaction** comes from the user: Mrs Jones responds to these cues by **turning the radio’s tuning dial or adjusting the attached knob**, which is mapped to the signal modulation. This physical interaction provides a **low-cognitive-load, procedural confirmation** that she has noticed the environmental event. By leveraging **procedural memory and familiar radio interactions**, the AAB offers an intuitive, non-digital alert mechanism suitable for older adults or users with cognitive or sensory decline.
 
 ---
 
-## ⚡ Executive Summary: Bridging the Digital Divide in Elder Care
-The ACBB utilises an advanced **predictive model (Layer 3)** to monitor:
+### FM Cue Resolution and Procedural Feedback
+The AAB relies on a **low-power FM transmitter** that operates on a **legal broadcast frequency** (e.g., a public audio channel) to generate subtle cues corresponding to environmental changes. Using a **PLL-based transmitter like the SI4713**, the system can produce **fine-grained audio modulation** (steps as small as 0.01 MHz / 10 kHz) to deliver gentle, perceptible cues rather than abrupt interference.  
+
+This allows **gradual onset of audio signals** that the user can respond to by turning the dial slightly, confirming awareness of the event without causing alarm. Controlled modulation produces a **tangible, low-cognitive-load interaction**, leveraging procedural memory in familiar radio behaviour.
+
+---
+
+## ⚡ Executive Summary: Ambient Awareness for Gerontology Research
+The AAB integrates a predictive model to monitor:
 
 - Indoor Air Quality (**IAQ**)  
 - Volatile Organic Compounds (**VOCs**)  
 - Micro-climate shifts  
 
-It communicates personalised environmental data via two subtle, physical feedback channels:  
+Environmental changes are communicated via **subtle audio cues**:
 
-- **Frequency drift** → static noise indicates degraded IAQ  
-- **Tone texture modulation** → erratic sound warns of fume spikes  
+- **Frequency modulation / overlay tones** → indicate chronic IAQ changes  
+- **Tone texture modulation** → signals acute fume spikes  
 
-The **Tangible User Interface (TUI)** requires users to **interact with the tuning dial** to resolve static, providing:  
+The **Tangible User Interface (TUI)** requires the user to **interact physically** with the radio or a dedicated dial to resolve the cue, providing:
 
-- A **low-cognitive-load** check on environmental health  
-- **Non-visual feedback** for inclusivity  
-- **Safer ageing in place** with reduced digital fatigue  
+- **Low-cognitive-load feedback** for environmental awareness  
+- **Non-visual cues** suitable for cognitive or sensory decline  
+- **Safe ambient monitoring** without digital fatigue  
+
+> **Note:** This system is intended as a **proof-of-principle** and a research tool for gerontologists studying interaction patterns and cognitive responses in older adults, not for broadcasting commercial content.
 
 ---
 
 ## 🧓 Application for Ageing Populations and Cognitive Accessibility
 
 ### 2.1 Addressing Sensory and Cognitive Decline
-The ACBB is **non-visual** and leverages **familiar interactions**, making it suitable for users with impairments:
+The AAB is **non-visual** and leverages **familiar interaction patterns**:
 
-- **Non-Visual Cue:** Alerts are auditory (static increase).  
-- **Familiarity:** Interaction uses FM radio/tuning dial, familiar to older generations.  
-- **Low Cognitive Load:** Requires a single action—turning the dial.  
+- **Non-Visual Cue:** Audio overlay or tone changes signal environmental events.  
+- **Familiarity:** Interaction uses radio tuning or dial adjustments, familiar to older generations.  
+- **Low Cognitive Load:** Single, simple action—adjusting the dial—confirms awareness.  
 
 ---
 
 ### 2.2 Multi-Layered Feedback for Intuitive Safety
-The ACBB employs layered communication to convey both **chronic and acute risks**:
+The system conveys **chronic and acute environmental states**:
 
-| Layer | Information Type        | Physical Mechanism & User Action                                                                 | Benefit for Seniors |
-|-------|-------------------------|--------------------------------------------------------------------------------------------------|---------------------|
-| **Layer 1: Frequency Drift** | Macro-State IAQ (Chronic) | Slow drift of carrier frequency → static noise. User restores clarity by tuning. | Tangible reinforcement of IAQ decline. |
-| **Layer 2: Tone Modulation** | Micro-State Fumes (Acute) | Erratic tone rhythm/texture signals sudden fume spikes. | Subtle but urgent safety warning. |
-| **Layer 3: Adaptive Baseline** | Predictive Context | System learns personalised IAQ baseline and signals only when conditions deviate. | Reduces alert fatigue; ensures trusted alerts. |
-| **Layer 4: User Agency** | Comfort Calibration | User presses a button to reset baseline comfort state. | Preserves autonomy and independence. |
+| Layer | Information Type | Mechanism & User Action | Benefit for Seniors |
+|-------|-----------------|-----------------------|-------------------|
+| **Layer 1: Frequency Modulation** | Macro-State IAQ | Slow overlay or subtle tone change; user restores clarity via dial | Tangible reinforcement of environmental status |
+| **Layer 2: Tone Texture** | Micro-State Fumes | Erratic tone indicates acute fume spikes | Subtle but urgent safety warning |
+| **Layer 3: Adaptive Baseline** | Predictive Context | System learns personalised baseline; cues only on deviation | Reduces alert fatigue; maintains trust |
+| **Layer 4: User Agency** | Comfort Calibration | User presses a button to reset baseline | Preserves autonomy |
 
 ---
 
-### 2.3 Specific Benefits for Dementia Care
-The ACBB design directly supports individuals living with **dementia**:  
-
-- **Harnessing Procedural Memory:** Leverages muscle memory (turning dial), bypassing impaired declarative memory.  
-- **Mitigating Executive Dysfunction:** Provides visceral non-verbal prompts instead of requiring decision-making.  
-- **Reducing Anxiety and Agitation:** Subtle static buildup is less frightening than loud alarms.  
-- **Simplifying Crisis Response:** Translates hazards into a binary state: *“Sound is unpleasant → I must correct it.”*  
+### 2.3 Benefits for Dementia Care
+- **Harnessing Procedural Memory:** Turning the dial bypasses impaired declarative memory.  
+- **Reducing Executive Load:** Simple, visceral audio cues avoid decision-making stress.  
+- **Minimising Anxiety:** Subtle modulation is less alarming than alarms.  
+- **Binary Feedback:** “Audio is noticeable → I adjust dial” simplifies response.
 
 ---
 
 ## 🎓 Academic Context and Technical Alignment
 
-### 3.1 Alignment with HCI Foundations
-- **Tangible User Interfaces (TUI):** Converts invisible environmental data (IAQ, VOCs) into a **physical artefact** (radio/dial).  
-- **Ambient Displays & Assisted Living (AAL):** Functions as an **ambient display**, presenting predictive data unobtrusively in the user’s environment.  
+### 3.1 Alignment with HCI Principles
+- **Tangible User Interfaces (TUI):** Converts invisible environmental data into physical interaction.  
+- **Ambient Assisted Living (AAL):** Unobtrusive display of predictive environmental data.
 
-### 3.2 Novelty in the Feedback Mechanism
-- **Subversion of FM Technology:** Instead of high-fidelity transmission, FM carrier drift is repurposed as an **intuitive environmental index**.  
-- **Actionable Kinesthetic Feedback:** Requires **physical interaction** (tuning dial), making feedback **memorable** and actionable for users with memory challenges.  
+### 3.2 Novelty in Feedback
+- **Subversion of FM Use:** Instead of broadcasting interference, FM audio is **modulated to create perceptible cues**, repurposing existing licensed channels.  
+- **Actionable Kinesthetic Feedback:** Requires **physical interaction**, enhancing memory and attention.
 
 ---
 
 ## ⚙️ Technical System Outline
-The ACBB integrates **four technical components** into a context-aware loop:
+| Component | Role | Mechanism |
+|-----------|------|-----------|
+| **Sensor Suite** | Data Acquisition & Prediction | Multi-gas sensor measures IAQ, VOCs, temperature, humidity; generates adaptive baseline. |
+| **ESP32 MCU** | Logic & Signal Generation | Processes sensor data, predicts deviations, generates modulated audio cues. |
+| **Legal FM Broadcast / Transmitter** | Output Actuator | Fine-grained, low-power modulation of legally licensed audio signal. |
+| **Analogue Radio / Tuning Dial** | TUI | Receives FM broadcast; user adjusts dial to resolve cues. |
 
-| Component | Role in the System | Mechanism and Rationale |
-|-----------|--------------------|--------------------------|
-| **Sensor Suite** | Data Acquisition & Prediction | Multi-gas sensor (e.g., **BME680**) measures IAQ, VOCs, temperature, humidity. Feeds a predictive baseline algorithm. |
-| **Microcontroller Unit (MCU)** | Logic & Signal Generation | MCU (e.g., **ESP32**) processes data, runs adaptive baseline algorithm, and generates DAC-driven beacon tones. |
-| **FM Transmitter Module** | Output Actuator | FM transmitter (e.g., **SI4713**) adjusts carrier frequency relative to IAQ deviation. |
-| **Analogue FM Radio** | User Interface (TUI) | User’s own FM radio receives broadcast. Drift produces static → prompts physical tuning action. |
-
-The design prioritises:  
+Design focuses on:
 
 - **Simplicity**  
 - **Robustness**  
-- **Low-power operation**  
-
-This ensures the ACBB functions reliably in **non-technical environments** over extended periods.  
+- **Safe, low-power operation**  
 
 ---
 
 ## 🏠 Practical Operation Scenario
-1. **Normal Operation:** Radio tuned to 97.1 MHz, ACBB transmitter inactive or slightly off-frequency.  
-2. **Environmental Change:** Sensors detect IAQ deviation; ESP32 calculates severity.  
-3. **Frequency Drift / Interference:** Chronic deviations → slow drift with static; acute deviations → low-power interference or erratic tone.  
-4. **User Response:** Turning the dial moves radio out of interference → clarity partially restored, confirming attention.  
-5. **Feedback Loop:** ACBB logs interaction, adjusts future drift thresholds for optimal sensitivity.
+1. **Normal Operation:** Radio tuned to licensed FM broadcast, AAB modulation minimal.  
+2. **Environmental Change:** Sensors detect IAQ deviation; MCU calculates severity.  
+3. **Cue Activation:** Chronic events → slow audio overlay; acute events → tone modulation.  
+4. **User Response:** Adjusts dial → audio overlay diminishes, confirming attention.  
+5. **Feedback Loop:** MCU logs interaction, adapts baseline for optimal sensitivity.
 
+---
 
-**Conceptual Flow Diagram:**
+### Flow Diagram
+
+```text
 [IAQ / VOC Sensors]
-↓
+       ↓
 [ESP32 MCU] — calculates deviation & severity
-↓
-[FM Transmitter] — frequency drift / modulation
-↓
-[User’s Analogue FM Radio] ← static/interference cue
-↓
-[User Action: Turns Dial] — partial clarity restored → procedural feedback confirmed
+       ↓
+[FM Audio Modulation] — subtle overlay / tone cues
+       ↓
+[User’s Analogue FM Radio] ← receives audio cues
+       ↓
+[User Action: Adjust Dial] — partial clarity restored
+       ↓
+[ESP32 MCU] — logs interaction & adjusts baseline
 
 
-## ✅ Key Points
-- Local, low-power transmission affects **only nearby radios**.  
-- Turning the dial **restores clarity by moving the receiver out of interference zone**.  
-- Feedback is **auditory, tangible, low-cognitive-load**, leveraging **procedural memory**.  
-- Frequency drift and tone modulation differentiate **chronic vs. acute events**.  
-- **SDR Testing:** Real-world experiments confirm FM transmitter can override reception as designed (see SDR.png).
 
-## 🗂 Table of Contents
-- Overview  
-- Executive Summary  
-- Benefits for Dementia Care  
-- Academic Context  
-- Technical System  
-- Practical Operation Scenario  
-- Key Points
+✅ Key Points
+
+Uses legal FM broadcast channels; avoids interference with commercial stations.
+Physical dial adjustments provide low-cognitive-load feedback.
+Audio modulation differentiates chronic vs. acute events.
+Intended as a proof-of-principle and research tool for gerontology studies.
+Demonstrates tangible HCI interaction for cognitive accessibility.
+
+🗂 Table of Contents
+Overview
+Executive Summary
+Benefits for Dementia Care
+Academic Context
+Technical System
+Practical Operation Scenario
+Key Points
 
