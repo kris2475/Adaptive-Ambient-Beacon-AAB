@@ -111,18 +111,29 @@ Design focuses on:
 ✅ Key Points
 
 Uses legal FM broadcast channels; avoids interference with commercial stations.
+
 Physical dial adjustments provide low-cognitive-load feedback.
+
 Audio modulation differentiates chronic vs. acute events.
+
 Intended as a proof-of-principle and research tool for gerontology studies.
+
 Demonstrates tangible HCI interaction for cognitive accessibility.
 
 🗂 Table of Contents
+
 Overview
+
 Executive Summary
+
 Benefits for Dementia Care
+
 Academic Context
+
 Technical System
+
 Practical Operation Scenario
+
 Key Points
 
 ---
