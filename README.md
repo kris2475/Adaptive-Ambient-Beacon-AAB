@@ -1,4 +1,3 @@
-
 # Adaptive Ambient Beacon (AAB) 🎓📖
 
 ## Overview: Repurposing Procedural Memory for Objective Data
@@ -97,6 +96,75 @@ The **Tangible Feedback Unit (TFU)** contains a **low-power FM transmitter and r
 ```
 
 ---
+
+This system represents a **novel, non-intrusive research instrument** combining **environmental sensing, adaptive feedback, and procedural memory-based interactions** for gerontology and TUI studies.
+
+
+---
+
+## 📊 Interaction Logging for Research Use
+
+### Overview
+
+In the Adaptive Ambient Beacon (AAB) system, **user interaction logging** serves as the bridge between **environmental sensing** and **behavioural measurement**. This feature enables researchers in **gerontology** and **human–computer interaction (HCI)** to quantitatively study awareness, responsiveness, and procedural cognition in ageing populations or individuals with cognitive decline — without relying on complex digital interfaces or verbal tasks.
+
+### Concept
+
+The AAB transforms subtle environmental deviations into a **familiar, tangible tuning task**. When the environment changes (e.g., VOC or IAQ shifts), a mild FM distortion occurs within the Tangible Feedback Unit (TFU). Users instinctively turn the radio dial to restore clarity — a deeply familiar, procedural action. This moment of interaction is what the system logs and quantifies.
+
+### Logged Data
+
+| Data Point | Description | Research Use |
+|-------------|--------------|---------------|
+| **Trigger Time** | When the environmental deviation occurred | Establishes cue onset |
+| **Trigger Type** | Type of deviation (IAQ, VOC, temperature) | Context for stimulus |
+| **Response Time** | When the dial first moved | Measures awareness & attention |
+| **Resolution Time** | When clarity was restored | Reflects motor control & engagement |
+| **Response Latency** | Time from cue to first response | Indicator of processing speed |
+| **Outcome** | Whether cue was resolved | Binary performance indicator |
+
+All interactions are timestamped and stored (e.g., JSON, CSV, or SQLite) for later analysis.
+
+### Example Log Entry
+
+```json
+{
+  "event_id": "b13a7e2c-51d2-4d4b-94f8-ef0219af932b",
+  "trigger_time": "2025-10-19T09:24:13Z",
+  "trigger_type": "VOC_spike",
+  "response_time": "2025-10-19T09:24:27Z",
+  "resolution_time": "2025-10-19T09:24:48Z",
+  "response_latency_s": 14,
+  "resolution_duration_s": 21,
+  "outcome": "resolved"
+}
+```
+
+### Research Rationale
+
+#### Gerontology Perspective
+- **Procedural Memory Preservation:** The radio-tuning gesture leverages procedural memory, which often remains intact in older adults and those with mild dementia.  
+- **Low Cognitive Load:** Simple, familiar motor response requiring no explicit instructions.  
+- **Longitudinal Insight:** Gradual changes in response speed or success rate can reflect cognitive or attentional decline.
+
+#### HCI Perspective
+- **Objective, Embodied Data:** Provides timestamped, sensor-linked behavioural data without self-report bias.  
+- **Non-Intrusive:** The cue remains subtle and self-contained, reducing stress or confusion.  
+- **Familiar Tangible Interaction:** Allows study of procedural adaptation and sensory engagement in ageing users.
+
+### Implementation Guidance
+
+For future implementations of logging:
+
+1. **Timestamp Key Events** — record `trigger_time`, `response_time`, and `resolution_time` on the MCU (e.g., ESP32).  
+2. **Track Dial Movement** — detect motion via rotary encoder or potentiometer.  
+3. **Compute Metrics** — `response_latency = response_time - trigger_time`; `resolution_duration = resolution_time - response_time`.  
+4. **Store Securely** — log to local file or database; sync securely to research server if needed.  
+5. **Export Easily** — provide `.csv` or `.json` for data analysis in R, Python, or MATLAB.
+
+### Summary
+
+Interaction logging transforms the AAB from a passive ambient sensor into a **behavioural research instrument**. By recording *how and when* participants respond to subtle environmental changes through a simple tuning action, the AAB provides a new, objective way to study cognition, attention, and adaptation in ageing and cognitively diverse populations.
 
 This system represents a **novel, non-intrusive research instrument** combining **environmental sensing, adaptive feedback, and procedural memory-based interactions** for gerontology and TUI studies.
 
