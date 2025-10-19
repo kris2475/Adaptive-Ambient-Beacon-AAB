@@ -11,15 +11,28 @@ Environmental deviations detected by the sensor suite (e.g., **BME680**) trigger
 
 ---
 
-## ⚙️ Technical System Outline & Obsolescence Mitigation
+## ⚙️ Technical System Outline & FM-based Tangible Feedback
 
 The design emphasizes **Simplicity, Robustness, and Safe, Low-Power Operation**, ensuring reliable long-term use.
 
-### 1. Decoupling Mechanism (The Tangible Feedback Unit - TFU)
+### 1. Decoupling Mechanism & FM-based Tangible Feedback (The TFU)
 
-- **Analogue Radio / Tuning Dial → TFU**: Custom unit containing both low-power FM transmitter and tuned FM receiver/speaker. Operates as a closed, micro-broadcast loop.
-- **The "Station" is the Beacon**: Internal transmitter uses a reserved, low-power, non-interfering frequency, only receivable by the TFU.
-- **Benefit**: No reliance on user-owned radios or high-power FM broadcasts, ensuring long-term robustness.
+The **Tangible Feedback Unit (TFU)** contains a **low-power FM transmitter and receiver loop** internally. Even though the system is self-contained, this design choice is **central to the research methodology**:
+
+- **Preserving Familiar Interaction Patterns**: Older adults are accustomed to tuning a physical radio dial to restore signal clarity. Using an FM broadcast internally preserves this natural, procedural interaction—turning the knob genuinely affects a signal, rather than just triggering a digital audio file.
+
+- **Dynamic Layered Modulation**: FM transmission allows subtle frequency shifts and overlay tones to indicate different environmental deviations:
+  - **Macro-State**: Gradual changes in IAQ (chronic trends)  
+  - **Micro-State**: Acute spikes in VOCs or fumes  
+  These cues require procedural resolution, i.e., tuning the dial to restore audio clarity.
+
+- **Accurate Kinesthetic Feedback**: By separating the **signal generation (transmitter)** from the **signal reception (receiver/speaker)**, the system can precisely log **user interaction** (knob movements), which is critical for objective research measurements.
+
+- **Future Scalability**: The FM-based approach allows multiple TFUs in one space to receive the same signal, making the system easily extendable for multi-room or multi-user studies.
+
+- **Safety & Regulatory Compliance**: The internal FM broadcast operates on a **low-power, legally safe frequency**, fully contained within the TFU chassis. It ensures reproducible, controlled experiments without relying on external radio infrastructure.
+
+**Benefit**: The FM loop transforms a simple environmental cue into a **tangible, procedural task** that is measurable, familiar, and low-stress for participants, while maintaining full control over the signal for research purposes.
 
 ---
 
