@@ -1,145 +1,91 @@
-# Adaptive Ambient Beacon (AAB)
 
-## 📖 Overview
-The **Adaptive Ambient Beacon (AAB)** is an **ambient intelligence system** designed to enhance safety and quality of life for **ageing populations** and individuals with **cognitive or sensory decline**. Unlike traditional smart home technologies (which often rely on screens, complex menus, or smartphones), the AAB **repurposes analogue FM radio as a tangible environmental monitor**, providing subtle, intuitive feedback through familiar devices.
+# Adaptive Ambient Beacon (AAB) 🎓📖
 
-Imagine Mrs Jones, who enjoys listening to a **legally licensed FM station**, such as a public “talking book” broadcast. She uses a simple, traditional radio and is accustomed to tuning the dial. The AAB introduces feedback by **slightly modulating a separate, low-power FM signal** on a legal frequency near the station. When environmental changes occur—such as increases in indoor pollutants, VOCs, or other hazards detected by the **sensor suite** (e.g., BME680)—the system calculates deviations relative to an **adaptive baseline**.
+## Overview: Repurposing Procedural Memory for Objective Data
 
-Instead of interfering with the licensed station, the AAB **synchronises subtle audio cues with the broadcast content**, producing a gentle overlay or additional tones that are **perceptible but non-startling**. The radio station continues normally, but the cues provide a tangible signal for the user.
+The **Adaptive Ambient Beacon (AAB)** is a dedicated research platform that employs **Tangible User Interface (TUI)** principles to objectively measure cognitive responses in ageing populations and individuals with sensory or cognitive decline. Unlike traditional smart home technologies—which often rely on screens, complex menus, or smartphones—this system leverages the robust, **low-cognitive-load pathway of procedural memory** via a highly familiar interaction method.
 
-The **crucial interaction** comes from the user: Mrs Jones responds to these cues by **turning the radio’s tuning dial or adjusting the attached knob**, which is mapped to the signal modulation. This physical interaction provides a **low-cognitive-load, procedural confirmation** that she has noticed the environmental event. By leveraging **procedural memory and familiar radio interactions**, the AAB offers an intuitive, non-digital alert mechanism suitable for older adults or users with cognitive or sensory decline.
+The AAB integrates a **high-fidelity sensor suite** (measuring Indoor Air Quality (IAQ), Volatile Organic Compounds (VOCs), and Micro-climate shifts) with a **Tangible Feedback Unit (TFU)**—a custom device designed to look and function exactly like a traditional analogue radio. This decouples the research mechanism from the obsolescence of commercial broadcast standards (FM/DAB).
 
----
-
-### FM Cue Resolution and Procedural Feedback
-The AAB relies on a **low-power FM transmitter** that operates on a **legal broadcast frequency** (e.g., a public audio channel) to generate subtle cues corresponding to environmental changes. Using a **PLL-based transmitter like the SI4713**, the system can produce **fine-grained audio modulation** (steps as small as 0.01 MHz / 10 kHz) to deliver gentle, perceptible cues rather than abrupt interference.  
-
-This allows **gradual onset of audio signals** that the user can respond to by turning the dial slightly, confirming awareness of the event without causing alarm. Controlled modulation produces a **tangible, low-cognitive-load interaction**, leveraging procedural memory in familiar radio behaviour.
+Environmental deviations detected by the sensor suite (e.g., **BME680**) trigger **Subtle Audio Modulation** on a self-contained, low-power FM frequency broadcast internally within the TFU. Users perform a familiar physical action—**adjusting the tuning dial**—to resolve the audio cue and restore clarity. This provides **objective, non-verbal confirmation of awareness**, suitable for users who struggle with complex digital interfaces or declarative memory tasks.
 
 ---
 
-## ⚡ Executive Summary: Ambient Awareness for Gerontology Research
-The AAB integrates a predictive model to monitor:
+## ⚙️ Technical System Outline & Obsolescence Mitigation
 
-- Indoor Air Quality (**IAQ**)  
-- Volatile Organic Compounds (**VOCs**)  
-- Micro-climate shifts  
+The design emphasizes **Simplicity, Robustness, and Safe, Low-Power Operation**, ensuring reliable long-term use.
 
-Environmental changes are communicated via **subtle audio cues**:
+### 1. Decoupling Mechanism (The Tangible Feedback Unit - TFU)
 
-- **Frequency modulation / overlay tones** → indicate chronic IAQ changes  
-- **Tone texture modulation** → signals acute fume spikes  
-
-The **Tangible User Interface (TUI)** requires the user to **interact physically** with the radio or a dedicated dial to resolve the cue, providing:
-
-- **Low-cognitive-load feedback** for environmental awareness  
-- **Non-visual cues** suitable for cognitive or sensory decline  
-- **Safe ambient monitoring** without digital fatigue  
-
-> **Note:** This system is intended as a **proof-of-principle** and a research tool for gerontologists studying interaction patterns and cognitive responses in older adults, not for broadcasting commercial content.
+- **Analogue Radio / Tuning Dial → TFU**: Custom unit containing both low-power FM transmitter and tuned FM receiver/speaker. Operates as a closed, micro-broadcast loop.
+- **The "Station" is the Beacon**: Internal transmitter uses a reserved, low-power, non-interfering frequency, only receivable by the TFU.
+- **Benefit**: No reliance on user-owned radios or high-power FM broadcasts, ensuring long-term robustness.
 
 ---
 
-## 🧓 Application for Ageing Populations and Cognitive Accessibility
+### 2. Core Components and Mechanism
 
-### 2.1 Addressing Sensory and Cognitive Decline
-The AAB is **non-visual** and leverages **familiar interaction patterns**:
-
-- **Non-Visual Cue:** Audio overlay or tone changes signal environmental events.  
-- **Familiarity:** Interaction uses radio tuning or dial adjustments, familiar to older generations.  
-- **Low Cognitive Load:** Single, simple action—adjusting the dial—confirms awareness.  
-
----
-
-### 2.2 Multi-Layered Feedback for Intuitive Safety
-The system conveys **chronic and acute environmental states**:
-
-| Layer | Information Type | Mechanism & User Action | Benefit for Seniors |
-|-------|-----------------|-----------------------|-------------------|
-| **Layer 1: Frequency Modulation** | Macro-State IAQ | Slow overlay or subtle tone change; user restores clarity via dial | Tangible reinforcement of environmental status |
-| **Layer 2: Tone Texture** | Micro-State Fumes | Erratic tone indicates acute fume spikes | Subtle but urgent safety warning |
-| **Layer 3: Adaptive Baseline** | Predictive Context | System learns personalised baseline; cues only on deviation | Reduces alert fatigue; maintains trust |
-| **Layer 4: User Agency** | Comfort Calibration | User presses a button to reset baseline | Preserves autonomy |
+| Component | Role | Mechanism & Detail |
+|-----------|------|------------------|
+| **Sensor Suite (BME680)** | Data Acquisition & Prediction | Measures IAQ, VOCs, temperature, humidity; generates adaptive baseline to reduce alert fatigue |
+| **ESP32 MCU** | Logic & Signal Generation | Processes sensor data, calculates deviations, generates modulated audio cues, logs dial interaction |
+| **Legal FM Broadcast / Transmitter (SI4713)** | Output Actuator | Low-power modulation of dedicated audio signal, step resolution 0.01 MHz / 10 kHz |
+| **Analogue Radio / Tuning Dial (TUI)** | Tangible User Interface | Receives internal FM broadcast; user adjusts dial to restore clarity; dial position sensed and fed back to MCU |
 
 ---
 
-### 2.3 Benefits for Dementia Care
-- **Harnessing Procedural Memory:** Turning the dial bypasses impaired declarative memory.  
-- **Reducing Executive Load:** Simple, visceral audio cues avoid decision-making stress.  
-- **Minimising Anxiety:** Subtle modulation is less alarming than alarms.  
-- **Binary Feedback:** “Audio is noticeable → I adjust dial” simplifies response.
+### 3. FM Cue Resolution and Procedural Feedback
+
+- **Subtle Modulation**: Gentle onset of audio signals rather than abrupt alarms.
+- **Layered Feedback**:
+  - **Layer 1**: Frequency modulation indicates chronic IAQ changes (macro-state)
+  - **Layer 2**: Tone texture modulation signals acute fume spikes (micro-state)
+- **Procedural Confirmation**: Turning the dial provides low-cognitive-load confirmation of awareness, logging **kinesthetic feedback** essential for research.
 
 ---
 
-## 🎓 Academic Context and Technical Alignment
+## 🧓 Application for Gerontology Research
 
-### 3.1 Alignment with HCI Principles
-- **Tangible User Interfaces (TUI):** Converts invisible environmental data into physical interaction.  
-- **Ambient Assisted Living (AAL):** Unobtrusive display of predictive environmental data.
+### 1. Addressing Sensory and Cognitive Decline
 
-### 3.2 Novelty in Feedback
-- **Subversion of FM Use:** Instead of broadcasting interference, FM audio is **modulated to create perceptible cues**, repurposing existing licensed channels.  
-- **Actionable Kinesthetic Feedback:** Requires **physical interaction**, enhancing memory and attention.
+- **Non-Visual Cue**: Audio-based, suitable for visual impairment.
+- **Familiarity**: Leverages radio-tuning interactions familiar to older generations.
+- **Low Cognitive Load**: Single action confirms awareness, minimizing executive load.
+- **Minimising Anxiety**: Subtle modulation reduces stress compared to loud alarms.
 
----
+### 2. Benefits for Dementia Care
 
-## ⚙️ Technical System Outline
-| Component | Role | Mechanism |
-|-----------|------|-----------|
-| **Sensor Suite** | Data Acquisition & Prediction | Multi-gas sensor measures IAQ, VOCs, temperature, humidity; generates adaptive baseline. |
-| **ESP32 MCU** | Logic & Signal Generation | Processes sensor data, predicts deviations, generates modulated audio cues. |
-| **Legal FM Broadcast / Transmitter** | Output Actuator | Fine-grained, low-power modulation of legally licensed audio signal. |
-| **Analogue Radio / Tuning Dial** | TUI | Receives FM broadcast; user adjusts dial to resolve cues. |
+- **Harnessing Procedural Memory**: Physical tuning bypasses impaired declarative memory.
+- **Binary Feedback**: Simple interaction: `Audio noticeable → Adjust dial → Audio clear`.
+- **User Agency**: Optional **Comfort Calibration** button allows baseline reset.
 
-Design focuses on:
+### 3. Predictive Context (Adaptive Baseline)
 
-- **Simplicity**  
-- **Robustness**  
-- **Safe, low-power operation**  
-
----
-
-## 🏠 Practical Operation Scenario
-1. **Normal Operation:** Radio tuned to licensed FM broadcast, AAB modulation minimal.  
-2. **Environmental Change:** Sensors detect IAQ deviation; MCU calculates severity.  
-3. **Cue Activation:** Chronic events → slow audio overlay; acute events → tone modulation.  
-4. **User Response:** Adjusts dial → audio overlay diminishes, confirming attention.  
-5. **Feedback Loop:** MCU logs interaction, adapts baseline for optimal sensitivity.
-
----
-
-✅ Key Points
-- Uses legal FM broadcast channels; avoids interference with commercial stations.
-- Physical dial adjustments provide low-cognitive-load feedback.
-- Audio modulation differentiates chronic vs. acute events.
-- Intended as a proof-of-principle and research tool for gerontology studies.
-- Demonstrates tangible HCI interaction for cognitive accessibility.
-
-🗂 Table of Contents
-- Overview
-- Executive Summary
-- Benefits for Dementia Care
-- Academic Context
-- Technical System
-- Practical Operation Scenario
-- Key Points
+- ESP32 integrates a predictive model for a personalised home environment baseline.
+- **Reduces Alert Fatigue**: Ignores normal fluctuations (e.g., routine cooking).
+- **Maintains Trust**: Cues only trigger on genuine environmental changes.
 
 ---
 
 ### Flow Diagram
 
-```text
-[IAQ / VOC Sensors]
-       ↓
-[ESP32 MCU] — calculates deviation & severity
-       ↓
-[FM Audio Modulation] — subtle overlay / tone cues
-       ↓
-[User’s Analogue FM Radio] ← receives audio cues
-       ↓
-[User Action: Adjust Dial] — partial clarity restored
-       ↓
-[ESP32 MCU] — logs interaction & adjusts baseline
+```
+[IAQ / VOC Sensors (BME680)]
+          ↓
+      [ESP32 MCU] — calculates deviation, severity, logs interaction
+          ↓
+[FM Audio Modulation (SI4713)] — subtle overlay / tone cues (0.01 MHz)
+          ↓
+[User’s Tangible Feedback Unit (TFU)] ← receives internal audio
+          ↓
+[User Action: Adjust Dial] — partial clarity restored, logs kinesthetic feedback
+          ↑
+      [ESP32 MCU] — adjusts baseline, records response latency
+```
+
+---
+
+This system represents a **novel, non-intrusive research instrument** combining **environmental sensing, adaptive feedback, and procedural memory-based interactions** for gerontology and TUI studies.
 
 
 
